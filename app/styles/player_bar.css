@@ -130,6 +130,8 @@
     margin-left: -0.5rem;
 }
 
+/*** UNCOMMENT WHEN SEEK BAR FUNCTIONS ARE ACTIVE ***/
+/*
 .seek-control .thumb {
     left: 0;
 }
@@ -137,6 +139,7 @@
 .seek-control .fill {
     width: 0;
 }
+*/
 
 .player-bar .volume {
     width: 25%;
