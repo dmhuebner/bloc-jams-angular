@@ -33,10 +33,20 @@
             ]
         };
         
+        /**
+        * @function getAlbum
+        * @desc Gets album from Fixture Objects
+        * @param 
+        */
         Fixtures.getAlbum = function() {
             return albumPicasso;
         };
         
+        /**
+        * @function getCollection
+        * @desc gets collection of albums
+        * @param numberOfAlbums (number)
+        */
         Fixtures.getCollection = function(numberOfAlbums) {
             var albumCollection = [];
             for (var i = 0; i < numberOfAlbums; i++) {
