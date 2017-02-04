@@ -47,16 +47,24 @@
                 preload: true
             });
             
+            //Buzz bind methods for several events
+            //Buzz bind method 'timeupdate' event
             currentBuzzObject.bind('timeupdate', function() {
                 $rootScope.$apply(function() {
                     SongPlayer.currentTime = currentBuzzObject.getTime();
                 });
             });
             
+            //Buzz bind method 'volumechange' event
             currentBuzzObject.bind('volumechange', function() {
                 $rootScope.$apply(function() {
                     SongPlayer.volume = currentBuzzObject.getVolume();
                 });
+            });
+            
+            //Buzz bind method 'ended' event
+            currentBuzzObject.bind('ended', function() {
+                SongPlayer.next();
             });
 
             SongPlayer.currentSong = song;
