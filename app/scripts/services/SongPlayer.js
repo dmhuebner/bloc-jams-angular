@@ -74,6 +74,8 @@
             
             if (SongPlayer.muted) {
                 SongPlayer.setVolume(0);
+            } else {
+                SongPlayer.setVolume(SongPlayer.volume);
             }
 
             SongPlayer.currentSong = song;
