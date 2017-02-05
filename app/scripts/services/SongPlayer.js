@@ -59,6 +59,11 @@
             currentBuzzObject.bind('volumechange', function() {
                 $rootScope.$apply(function() {
                     SongPlayer.volume = currentBuzzObject.getVolume();
+                    if (SongPlayer.volume > 0) {
+                        SongPlayer.muted = false;
+                    } else {
+                        SongPlayer.muted = true;
+                    }
                 });
             });
             
@@ -66,6 +71,10 @@
             currentBuzzObject.bind('ended', function() {
                 SongPlayer.next();
             });
+            
+            if (SongPlayer.muted) {
+                SongPlayer.setVolume(0);
+            }
 
             SongPlayer.currentSong = song;
         };
@@ -98,10 +107,22 @@
         SongPlayer.currentTime = null;
         
         /**
-        * @desc Current playback time (in seconds) of currently playing song
+        * @desc Starting SongPlayer volume
         * @type {Number} PUBLIC
         */
         SongPlayer.volume = 80;
+        
+        /**
+        * @desc Log last volume
+        * @type {Number} PUBLIC
+        */
+        SongPlayer.lastVolume = 80;
+        
+        /**
+        * @desc Declares public mute property
+        * @type {Number} PUBLIC
+        */
+        SongPlayer.muted = false;
         
         /**
         * @function play
@@ -189,6 +210,27 @@
             if (currentBuzzObject) {
                 currentBuzzObject.setVolume(volume);
             }
+        };
+        
+        /**
+        * @function mute
+        * @desc Mutes the volume song from currentAlbum
+        * @param
+        */
+        SongPlayer.mute = function() {
+            SongPlayer.lastVolume = SongPlayer.volume;
+            SongPlayer.setVolume(0);
+            SongPlayer.muted = true;
+        };
+        
+        /**
+        * @function unmute
+        * @desc Mutes the volume song from currentAlbum
+        * @param
+        */
+        SongPlayer.unmute = function() {
+            SongPlayer.setVolume(SongPlayer.lastVolume);
+            SongPlayer.muted = false;
         };
         
         return SongPlayer;
